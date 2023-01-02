@@ -1,12 +1,13 @@
 const Btn = document.querySelector('#StartBtn');
 const Content = document.querySelector('.content');
 
-function Speak(sentence){
+function Speak(sentence, voice){
     const Speaker = new SpeechSynthesisUtterance(sentence);
-
+    const voices = window.speechSynthesis.getVoices();
     //Speaker.text = sentence;
     Speaker.rate = 1;
     Speaker.pitch = 1;
+    Speaker.voice = voice == undefined ?  voices[2] : voices[voice];
     window.speechSynthesis.speak(Speaker);
 }
 
@@ -22,16 +23,16 @@ function wish(){
     }
 }
 
-window.addEventListener("load",()=>{
+$(document).ready(()=>{
     Speak("Activating System");
     Speak("Going Online");
     wish();
 })
 
-const Recognitior = window.SpeechRecognition || window.webkitSpeechRecognition;
-const Recognition = new SpeechRecognition();
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const Recognitior = new SpeechRecognition();
 
-Recognition.onresult = (event) =>{
+Recognitior.onresult = (event) =>{
     const current = event.resultIndex;
     const transcript = event.results[current][0].transcript;
     Content.textContent = transcript;
@@ -39,7 +40,7 @@ Recognition.onresult = (event) =>{
 }
 
 Btn.addEventListener('click', ()=>{
-    Recognition.start();
+    Recognitior.start();
 })
 
 function SpeakThis(msg){
