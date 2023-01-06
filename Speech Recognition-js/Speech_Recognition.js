@@ -36,30 +36,25 @@ Recognitior.onresult = (event) =>{
     const current = event.resultIndex;
     const transcript = event.results[current][0].transcript;
     Content.textContent = transcript;
-    SpeakThis(transcript.toLwerCase())
+    SpeakThis(transcript.toLowerCase())
 }
 
 Btn.addEventListener('click', ()=>{
     Recognitior.start();
+    Content.textContent = "Listening...";
 })
 
 function SpeakThis(msg){
-    const Speech = new SpeechSynthesisUtterance();
-    Speech.text = "I did not understand what you said please try again"
+   const ErrorText = "I did not understand what you said please try again"
 
-    if(msg.includes("hey") || msg.includes("hello")){
+    if(msg.includes("hay") || msg.includes("hello")){
         const FinalText = "Hello Boss";
-        Speech.text = FinalText;
+        Speak(FinalText);
     }else{
-        window.open(`https://www.google.com/search?=${msg.replace(" ", "+")}`, "_blank");
+        window.open(`https://www.google.com/search?q=${msg.replace(" ", "+")}`, "_blank");
         const FinalText = `I found some information for ${msg} on google`;
-        Speech.text = FinalText;
+        Speak(FinalText);
     }
 
-    // Speech.volume = 1;
-    // Speech.pitch = 1;
-    // Speech.rate = 1;
 
-    // window.speechSynthesis.speak(Speech);
-    Speak(Speech)
 }

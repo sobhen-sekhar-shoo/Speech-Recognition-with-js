@@ -5,6 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Speech Recognition</title>
+
+    <style>
+        #StartBtn{
+            border-radius: 50%;
+            border: none;
+            height: 50px;
+            width: 50px;
+            cursor: pointer;
+        }
+
+        #StartBtn img{
+            height: 35px;
+        }
+        .Listeningsection{
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -16,9 +33,9 @@
             <label for="Email">Email:</label>
             <input type="text" id="Email"/>
         </div>
-        <div>
+        <div class="Listeningsection">
             <h1 class="content">Click here to start</h1>
-            <button id="StartBtn">Start</button>
+            <button id="StartBtn"><img src="./microphone-342.svg" /></button>
         </div>
     </div>
 <script  src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
